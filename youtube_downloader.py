@@ -13,7 +13,7 @@ def main():
     while choix not in ["P", "p", "V", "v"]:
         choix = input("Veuillez choisir entre une playlist et une vidéo (P/V) : ")
     
-    if choix in ["P", "p"]:
+    if choix in ["V", "v"]:
         if not os.path.exists(PATH_VID):
             os.mkdir(PATH_VID)
 
@@ -23,7 +23,7 @@ def main():
         print(f'{ytv["title"]} téléchargée avec succès vers {PATH_VID}')
         subprocess.run("cls", shell=True)
         
-    elif choix in ["V", "v"]:
+    elif choix in ["P", "p"]:
         if not os.path.exists(PATH_PLAY):
             os.mkdir(PATH_PLAY)
 
