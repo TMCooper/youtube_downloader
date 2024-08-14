@@ -1,6 +1,8 @@
 import yt_dlp as youtube_dl
+from pytubefix import Playlist
 import subprocess
 import os
+link_f = []
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 PATH_VID = os.path.join(PATH, "Vidéo")
@@ -28,9 +30,13 @@ def main():
             os.mkdir(PATH_PLAY)
 
         Link = input("Entrez le lien de la playlist : ")
-        yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_PLAY, '%(title)s.%(ext)s')})
-        ytp = yt.extract_info(Link, download=True)
-        print(f'{ytp["title"]} téléchargée avec succès vers {PATH_PLAY}')
+        yt_play = Playlist(Link)
+
+        for i in yt_play.videos:
+            link_vid = i.watch_url
+            yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_PLAY, '%(title)s.%(ext)s')})
+            dl_vid = yt.extract_info(link_vid, download=True)
+            print(f'{dl_vid["title"]} téléchargée avec succès vers {PATH_PLAY}')
         subprocess.run("cls", shell=True)
 
 if __name__ == "__main__":
