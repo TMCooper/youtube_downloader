@@ -20,7 +20,9 @@ def main():
             os.mkdir(PATH_VID)
 
         Link = input("Entrez le lien de la vidéo : ")
-        yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_VID, '%(title)s.%(ext)s')})
+        yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_VID, '%(title)s.%(ext)s'),
+                                   'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
+                    })
         ytv = yt.extract_info(Link, download=True)
         print(f'{ytv["title"]} téléchargée avec succès vers {PATH_VID}')
         subprocess.run("cls", shell=True)
@@ -34,7 +36,9 @@ def main():
 
         for i in yt_play.videos:
             link_vid = i.watch_url
-            yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_PLAY, '%(title)s.%(ext)s')})
+            yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_PLAY, '%(title)s.%(ext)s'),
+                                       'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
+                    })
             dl_vid = yt.extract_info(link_vid, download=True)
             print(f'{dl_vid["title"]} téléchargée avec succès vers {PATH_PLAY}')
         subprocess.run("cls", shell=True)
