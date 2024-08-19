@@ -2,7 +2,7 @@ import yt_dlp as youtube_dl
 from pytubefix import Playlist
 import subprocess
 import os
-link_f = []
+
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 PATH_VID = os.path.join(PATH, "Vidéo")
@@ -41,6 +41,7 @@ def main():
                     })
             dl_vid = yt.extract_info(link_vid, download=True)
             print(f'{dl_vid["title"]} téléchargée avec succès vers {PATH_PLAY}')
+
         subprocess.run("cls", shell=True)
 
 if __name__ == "__main__":
