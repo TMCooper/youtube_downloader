@@ -1,0 +1,20 @@
+{
+    "fr" : {
+        "Exit_q" : "Pour quiter le programme tapper Q",
+        "User_request_P_V" : "Voulez-vous telecharger une playlist ou une video ? (P/V) : ",
+        "Force_user_request_P_V" : "Voulez-vous telecharger une playlist ou une video ? P ou V : ",
+        "Requests_user_link" : "Entrez le lien de la video : ",
+        "Requests_user_playlist" : "Entrez le lien de la playlist : ",
+        "success_download" : "{title} telechargee avec succes vers {path}",
+        "keyboard_interupt" : "\nL utilisateur a saisit CTRL + C arret du programme ..."
+    },
+    "en" : {
+        "Exit_q": "To exit the program type Q",
+        "User_request_P_V": "Do you want to download a playlist or a video? (P/V): ",
+        "Force_user_request_P_V": "Do you want to download a playlist or a video? P or V: ",
+        "Requests_user_link": "Enter the video link: ",
+        "Requests_user_playlist": "Enter the playlist link: ",
+        "success_download": "{title} successfully downloaded to {path}",
+        "keyboard_interupt": "\nThe user pressed CTRL + C, stopping the program..."
+    }
+}
