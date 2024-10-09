@@ -12,5 +12,4 @@ At my knowledge no and i test it on a playlist with more than 600 videos in it
 
 ## Warning
 
-The software ask for admin permissions of course you can give it this permission or no but if you don't have admin permissions the software will not be able to execute
-
+The software ask for admin permissions of course you can give it this permission or no but if you don't have admin permissions the software will not be able to execute (it's for the proxy to bypass the bot checking on youtube)
