@@ -6,7 +6,8 @@
         "Requests_user_link" : "Entrez le lien de la video : ",
         "Requests_user_playlist" : "Entrez le lien de la playlist : ",
         "success_download" : "{title} telechargee avec succes vers {path}",
-        "keyboard_interupt" : "\nL utilisateur a saisit CTRL + C arret du programme ..."
+        "keyboard_interupt" : "\nL utilisateur a saisit CTRL + C arret du programme ...",
+        "check_admin" : "Redemarrage avec les privileges d'administrateur..."
     },
     "en" : {
         "Exit_q": "To exit the program type Q",
@@ -15,6 +16,7 @@
         "Requests_user_link": "Enter the video link: ",
         "Requests_user_playlist": "Enter the playlist link: ",
         "success_download": "{title} successfully downloaded to {path}",
-        "keyboard_interupt": "\nThe user pressed CTRL + C, stopping the program..."
+        "keyboard_interupt": "\nThe user pressed CTRL + C, stopping the program...",
+        "check_admin" : "Restarting with administrator privileges..."
     }
 }
