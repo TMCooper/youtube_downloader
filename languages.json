@@ -7,16 +7,22 @@
         "Requests_user_playlist" : "Entrez le lien de la playlist : ",
         "success_download" : "{title} telechargee avec succes vers {path}",
         "keyboard_interupt" : "\nL utilisateur a saisit CTRL + C arret du programme ...",
-        "check_admin" : "Redemarrage avec les privileges d'administrateur..."
+        "check_admin" : "Redemarrage avec les privileges d'administrateur...",
+        "check_extention": "Voullez vous telecharger quel version entre mp3 et mp4 ? : ",
+        "error_mp_v" : "l extention que vous avez choisit n est pas mp3 ou mp4 : ",
+        "error_key" : "Vous avez rentrer un lien de video au lieux d'une playlist"
     },
     "en" : {
         "Exit_q": "To exit the program type Q",
-        "User_request_P_V": "Do you want to download a playlist or a video? (P/V): ",
-        "Force_user_request_P_V": "Do you want to download a playlist or a video? P or V: ",
-        "Requests_user_link": "Enter the video link: ",
-        "Requests_user_playlist": "Enter the playlist link: ",
+        "User_request_P_V": "Do you want to download a playlist or a video? (P/V) : ",
+        "Force_user_request_P_V": "Do you want to download a playlist or a video? P or V : ",
+        "Requests_user_link": "Enter the video link : ",
+        "Requests_user_playlist": "Enter the playlist link : ",
         "success_download": "{title} successfully downloaded to {path}",
         "keyboard_interupt": "\nThe user pressed CTRL + C, stopping the program...",
-        "check_admin" : "Restarting with administrator privileges..."
+        "check_admin" : "Restarting with administrator privileges...",
+        "check_extention": "Which version do you want to download between mp3 and mp4 ? : ",
+        "error_mp_v": "the extension you have chosen is not mp3 or mp4 : ",
+        "error_key": "You have entered a video link instead of a playlist"
     }
 }
