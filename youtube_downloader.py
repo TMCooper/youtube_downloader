@@ -9,6 +9,7 @@ import ctypes
 PATH = os.path.dirname(os.path.abspath(__file__))
 PATH_VID = os.path.join(PATH, "Vidéo")
 PATH_PLAY = os.path.join(PATH, "Playlist")
+PATH_MP3 = os.path.join(PATH, "Musique")
 PROXY = 'http://218.155.31.188:8080'
 
 def main():
@@ -38,22 +39,44 @@ def main():
         # Condition corrigée pour vérifier l'entrée utilisateur
         while choix not in ["p", "v", "q"]:
             choix = input(languages[lang]["Force_user_request_P_V"]).lower()
+
+        mp_v = input(languages[lang]["check_extention"]).lower()
+        
+        while mp_v not in ["mp3", "mp4"]:
+            mp_v = input(languages[lang]["error_mp_v"])
+        
         
         if choix in ["v"]:
             if not os.path.exists(PATH_VID):
                 os.mkdir(PATH_VID)
+            
+
 
             Link = input(languages[lang]["Requests_user_link"])
 
             ID_V = Link.split("watch?v=")[1].split("&")[0]
             video = (f'https://www.youtube.com/watch?v={ID_V}')
 
-            yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_VID, '%(title)s.%(ext)s'),
-                                    'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
-                        })
-            ytv = yt.extract_info(video, download=True)
-            title = ytv["title"] 
-            print(languages[lang]["success_download"].format(title=title, path=PATH_VID))
+            if mp_v == "mp4":
+                yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_VID, '%(title)s.%(ext)s'),
+                                        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
+                            })
+                ytv = yt.extract_info(video, download=True)
+                title = ytv["title"] 
+                print(languages[lang]["success_download"].format(title=title, path=PATH_VID))
+            
+            if mp_v == "mp3":
+                yt = youtube_dl.YoutubeDL({'format': 'bestaudio/best', 'outtmpl': os.path.join(PATH_MP3, '%(title)s.%(ext)s'),
+                                          'postprocessors': [{
+                                            'key': 'FFmpegExtractAudio',
+                                            'preferredcodec': 'mp3',
+                                            'preferredquality': '192',
+                                            }]
+                                            })
+                ytv = yt.extract_info(video, download=True)
+                title = ytv["title"] 
+                print(languages[lang]["success_download"].format(title=title, path=PATH_VID))
+
             subprocess.run("cls", shell=True)
             
         elif choix in ["p"]:
@@ -66,13 +89,30 @@ def main():
 
             for i in yt_play.videos:
                 set_proxy('https://218.155.31.188:8080')
-                link_vid = i.watch_url
-                yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_PLAY, '%(title)s.%(ext)s'),
-                                        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
-                        })
-                dl_vid = yt.extract_info(link_vid, download=True)
-                title = dl_vid["title"]
-                print(languages[lang]["success_download"].format(title=title, path=PATH_PLAY))
+                if mp_v == "mp4" : 
+                    link_vid = i.watch_url
+                    yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_PLAY, '%(title)s.%(ext)s'),
+                                            'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
+                            })
+                    dl_vid = yt.extract_info(link_vid, download=True)
+                    title = dl_vid["title"]
+                    print(languages[lang]["success_download"].format(title=title, path=PATH_PLAY))
+                    subprocess.run("cls", shell=True)
+
+                if mp_v == "mp3":
+                    link_vid = i.watch_url
+                    yt = youtube_dl.YoutubeDL({'format': 'bestaudio/best', 'outtmpl': os.path.join(PATH_MP3, '%(title)s.%(ext)s'),
+                                            'postprocessors': [{
+                                                'key': 'FFmpegExtractAudio',
+                                                'preferredcodec': 'mp3',
+                                                'preferredquality': '192',
+                                                }]
+                                                })
+                    dl_vid = yt.extract_info(link_vid, download=True)
+                    title = dl_vid["title"]
+                    print(languages[lang]["success_download"].format(title=title, path=PATH_PLAY))
+                    subprocess.run("cls", shell=True)
+
             subprocess.run("cls", shell=True)
         
         elif choix in ["q"]:
@@ -81,6 +121,9 @@ def main():
     
     except KeyboardInterrupt:
         print(languages[lang]["keyboard_interupt"])
+    
+    except KeyError:
+        print(languages[lang]["error_key"])
     
     finally:
         reset_proxy()  # Réinitialise le proxy à la fin
@@ -103,4 +146,3 @@ if __name__ == "__main__":
     main()
     reset_proxy()  # Réinitialise le proxy après l'exécution principale
     subprocess.run("cls", shell=True)
-
