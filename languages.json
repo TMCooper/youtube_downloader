@@ -10,7 +10,8 @@
         "check_admin" : "Redemarrage avec les privileges d'administrateur...",
         "check_extention": "Voullez vous telecharger quel version entre mp3 et mp4 ? : ",
         "error_mp_v" : "l extention que vous avez choisit n est pas mp3 ou mp4 : ",
-        "error_key" : "Vous avez rentrer un lien de video au lieux d'une playlist"
+        "error_key" : "Vous avez rentrer un lien de video au lieux d'une playlist",
+        "alrealy_exist" : "la video est deja telechargee"
     },
     "en" : {
         "Exit_q": "To exit the program type Q",
@@ -23,6 +24,7 @@
         "check_admin" : "Restarting with administrator privileges...",
         "check_extention": "Which version do you want to download between mp3 and mp4 ? : ",
         "error_mp_v": "the extension you have chosen is not mp3 or mp4 : ",
-        "error_key": "You have entered a video link instead of a playlist"
+        "error_key": "You have entered a video link instead of a playlist",
+        "alrealy_exist" : "The video is already downloaded"
     }
 }
