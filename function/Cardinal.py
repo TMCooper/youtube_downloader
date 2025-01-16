@@ -1,6 +1,7 @@
 from function.Yui import *
 import yt_dlp as youtube_dl
 import os
+import json
 
 class Cardinal:
     def Playlist_downloader(yt_play_videos, mp_v, lang, languages, PATH_PLAY, PATH_MP3):
@@ -55,3 +56,30 @@ class Cardinal:
             ytv = yt.extract_info(video, download=True)
             title = ytv["title"] 
             print(languages[lang]["success_download"].format(title=title, path=PATH_VID))
+
+    
+    def basic():
+        valid_languages = ["en", "fr"]
+
+        with open('languages.json', 'r') as lang_file:
+            languages = json.load(lang_file)
+
+        print(f"Available languages: {', '.join(valid_languages).upper()}")
+        lang = input("What is your language ? : ").lower()
+
+        while lang not in valid_languages:
+            print(f"Available languages: {', '.join(valid_languages).upper()}")
+            lang = input("Please select your language: ").lower()
+
+        choix = input(languages[lang]["User_request_P_V"]).lower()
+
+        # Condition corrigée pour vérifier l'entrée utilisateur
+        while choix not in ["p", "v", "q"]:
+            choix = input(languages[lang]["Force_user_request_P_V"]).lower()
+
+        mp_v = input(languages[lang]["check_extention"]).lower()
+        
+        while mp_v not in ["mp3", "mp4"]:
+            mp_v = input(languages[lang]["error_mp_v"])
+        
+        return lang, languages, choix, mp_v
