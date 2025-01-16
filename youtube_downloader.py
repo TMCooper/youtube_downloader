@@ -1,9 +1,8 @@
-import yt_dlp as youtube_dl
 from pytubefix import Playlist
 from function.Cardinal import *
 from function.Yui import *
+from function.Holo import *
 import os
-import json
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 PATH_VID = os.path.join(PATH, "Vidéo")
@@ -21,28 +20,7 @@ def main():
             Yui.run_as_admin()
             return  # Sort de la fonction pour éviter d'exécuter le reste du code
 
-        valid_languages = ["en", "fr"]
-
-        with open('languages.json', 'r') as lang_file:
-            languages = json.load(lang_file)
-
-        print(f"Available languages: {', '.join(valid_languages).upper()}")
-        lang = input("What is your language ? : ").lower()
-
-        while lang not in valid_languages:
-            print(f"Available languages: {', '.join(valid_languages).upper()}")
-            lang = input("Please select your language: ").lower()
-
-        choix = input(languages[lang]["User_request_P_V"]).lower()
-
-        # Condition corrigée pour vérifier l'entrée utilisateur
-        while choix not in ["p", "v", "q"]:
-            choix = input(languages[lang]["Force_user_request_P_V"]).lower()
-
-        mp_v = input(languages[lang]["check_extention"]).lower()
-        
-        while mp_v not in ["mp3", "mp4"]:
-            mp_v = input(languages[lang]["error_mp_v"])
+        lang, languages, choix, mp_v = Cardinal.basic()
         
         
         if choix in ["v"]:
