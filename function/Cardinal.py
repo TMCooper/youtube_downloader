@@ -37,25 +37,52 @@ class Cardinal:
                     subprocess.run("cls", shell=True)
         
     def Video_downloader(video, mp_v, lang, languages, PATH_VID, PATH_MP3):
-        if mp_v == "mp4":
-            yt = youtube_dl.YoutubeDL({'outtmpl': os.path.join(PATH_VID, '%(title)s.%(ext)s'),
-                                        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]'
-                            })
-            ytv = yt.extract_info(video, download=True)
-            title = ytv["title"] 
-            print(languages[lang]["success_download"].format(title=title, path=PATH_VID))
+        try:
+            if mp_v == "mp4":
+                # Utilisation d'options plus flexibles pour le format
+                yt = youtube_dl.YoutubeDL({
+                    'outtmpl': os.path.join(PATH_VID, '%(title)s.%(ext)s'),
+                    'format': 'best[ext=mp4]/bestvideo[ext=mp4]+bestaudio/best',  # Format plus flexible
+                    'ignoreerrors': True,  # Ignorer certaines erreurs non critiques
+                    'verbose': True  # Afficher plus d'informations
+                })
+                ytv = yt.extract_info(video, download=True)
+                if ytv:
+                    title = ytv.get("title", "Video") 
+                    print(languages[lang]["success_download"].format(title=title, path=PATH_VID))
+                else:
+                    print(languages[lang].get("download_failed", "Téléchargement échoué"))
+                
+            elif mp_v == "mp3":
+                yt = youtube_dl.YoutubeDL({
+                    'format': 'bestaudio/best', 
+                    'outtmpl': os.path.join(PATH_MP3, '%(title)s.%(ext)s'),
+                    'postprocessors': [{
+                        'key': 'FFmpegExtractAudio',
+                        'preferredcodec': 'mp3',
+                        'preferredquality': '192',
+                    }],
+                    'ignoreerrors': True,
+                    'verbose': True
+                })
+                ytv = yt.extract_info(video, download=True)
+                if ytv:
+                    title = ytv.get("title", "Audio") 
+                    print(languages[lang]["success_download"].format(title=title, path=PATH_MP3))  # Correction du chemin ici
+                else:
+                    print(languages[lang].get("download_failed", "Téléchargement échoué"))
+            else:
+                print(languages[lang].get("invalid_format", "Format non valide. Utilisez mp3 ou mp4."))
+        
+        except Exception as e:
+            print(f"Erreur lors du téléchargement: {str(e)}")
+            print("Essai avec les formats disponibles...")
             
-        if mp_v == "mp3":
-            yt = youtube_dl.YoutubeDL({'format': 'bestaudio/best', 'outtmpl': os.path.join(PATH_MP3, '%(title)s.%(ext)s'),
-                                          'postprocessors': [{
-                                            'key': 'FFmpegExtractAudio',
-                                            'preferredcodec': 'mp3',
-                                            'preferredquality': '192',
-                                            }]
-                                            })
-            ytv = yt.extract_info(video, download=True)
-            title = ytv["title"] 
-            print(languages[lang]["success_download"].format(title=title, path=PATH_VID))
+            # Afficher les formats disponibles
+            with youtube_dl.YoutubeDL({'listformats': True}) as ydl:
+                ydl.download([video])
+            
+            print("Veuillez réessayer en choisissant un format disponible ou en utilisant 'best' comme format.")
 
     
     def basic():
