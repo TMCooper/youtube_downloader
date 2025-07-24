@@ -20,3 +20,7 @@ The software ask for admin permissions of course you can give it this permission
 
 ## Comming soon
 - Gestion of linux user (ubuntu/debian)
+
+# Issue
+
+- Currently the program don't support well linux 
