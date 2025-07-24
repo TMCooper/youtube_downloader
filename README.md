@@ -17,3 +17,6 @@ The software ask for admin permissions of course you can give it this permission
 ## New Features
 
 - You can download video and playlist in mp3 or mp4 format if you want to
+
+## Comming soon
+- Gestion of linux user (ubuntu/debian)
