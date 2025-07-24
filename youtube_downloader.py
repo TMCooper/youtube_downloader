@@ -1,3 +1,4 @@
+import platform
 from pytubefix import Playlist
 from function.Cardinal import *
 from function.Yui import *
@@ -19,6 +20,7 @@ def main():
             # Si le script n'est pas lancé en tant qu'administrateur, redémarre-le avec élévation
             Yui.run_as_admin()
             return  # Sort de la fonction pour éviter d'exécuter le reste du code
+            
 
         lang, languages, choix, mp_v = Cardinal.basic()
         
